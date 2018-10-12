@@ -17,6 +17,7 @@ module.exports = function (options) {
         subject: null,
         html: null,
         text: null,
+        attachments: null,
         smtp: null
     });
 
@@ -33,6 +34,7 @@ module.exports = function (options) {
         var subject = options.subject || _subjectFromFilename(file.path);
         var html = options.html || file.contents.toString();
         var text = options.text || null;
+        var attachments = options.attachements || null;
 
         return transporter.sendMail({
             from: options.from,
@@ -40,7 +42,8 @@ module.exports = function (options) {
             subject: subject,
             generateTextFromHTML: true, // added
             html: html,
-            text: text
+            text: text,
+            attachements: attachements,
         }, function (error, info) {
 
             if (error) {
